@@ -9,7 +9,7 @@ WORKDIR /src
 # 這裡的 COPY . /src 會複製整個 Zeabur 專案（也就是你整個 GitHub 倉庫）的內容到 /src
 COPY . /src
 # 現在 /src 裡面會有 package.json，所以 pnpm install 會成功
-RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store --mount=type=cache,id=pnpm-metadata,target=/root/.cache/pnpm/metadata DOCKER_BUILD=true pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store --mount=type=cache,id=pnpm-metadata,target=/root/.cache/pnpm/metadata DOCKER_BUILD=true pnpm install --frozen-lockfile --ignore-scripts
 RUN pnpm build
 
 # Delete all dev dependencies ... (省略)
