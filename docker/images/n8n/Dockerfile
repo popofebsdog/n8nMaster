@@ -10,7 +10,7 @@ WORKDIR /src
 COPY . /src
 # 現在 /src 裡面會有 package.json，所以 pnpm install 會成功
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store --mount=type=cache,id=pnpm-metadata,target=/root/.cache/pnpm/metadata DOCKER_BUILD=true pnpm install --frozen-lockfile --ignore-scripts
-RUN pnpm build
+RUN pnpm build --ignore-scripts
 
 # Delete all dev dependencies ... (省略)
 # Deploy the `n8n` package into /compiled ... (省略)
